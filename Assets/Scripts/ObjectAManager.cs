@@ -5,17 +5,17 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-public class ObjectManager : MonoBehaviour
+public class ObjectAManager : MonoBehaviour
 {
     [SerializeField] Transform target; // Target to rotate towards
 
     private LissajousCurve lissajousCurve;
-    private RotateTowardsTarget rotateTowardsTarget;
-    private ManageColor manageColor;
+    TrailRenderer trailRenderer;
 
     private void Start()
     {
         StartCoroutine(InitObject());
+        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     IEnumerator InitObject()
@@ -29,10 +29,10 @@ public class ObjectManager : MonoBehaviour
 
         yield return null;
 
-        rotateTowardsTarget = transform.GetComponent<RotateTowardsTarget>();
+        RotateTowardsTarget rotateTowardsTarget = transform.GetComponent<RotateTowardsTarget>();
         rotateTowardsTarget.SetTarget(target); // Set the target for rotation
 
-        manageColor = transform.GetComponent<ManageColor>();
+        ManageColor manageColor = transform.GetComponent<ManageColor>();
         manageColor.Init(target);
 
         yield return StartCoroutine(MakeGrabbable());
@@ -69,14 +69,20 @@ public class ObjectManager : MonoBehaviour
     private void OnGrabbed(SelectEnterEventArgs args)
     {
         lissajousCurve.enabled = false; // Disable the LissajousCurve script to stop movement
-        rotateTowardsTarget.enabled = false; // Disable rotation
-        manageColor.enabled = false; // Disable color management
     }
 
     private void OnReleased(SelectExitEventArgs args)
     {
-        lissajousCurve.enabled = true; 
-        rotateTowardsTarget.enabled = true; 
-        manageColor.enabled = true; 
+        lissajousCurve.ResetObjectInitialPosition();
+    }
+
+    public void ToggleTrailVisibility()
+    {
+        if (trailRenderer == null)
+        {
+            Debug.LogWarning("TrailRenderer component not found.");
+            return;
+        }
+        trailRenderer.enabled = !trailRenderer.enabled;
     }
 }
