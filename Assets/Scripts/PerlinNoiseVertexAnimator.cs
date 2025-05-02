@@ -23,6 +23,9 @@ public class PerlinNoiseVertexAnimator : MonoBehaviour
 
     private void Update()
     {
+        if (deformingMesh == null)
+            return;
+
         float time = Time.time * animationSpeed;
 
         for (int i = 0; i < originalVertices.Length; i++)

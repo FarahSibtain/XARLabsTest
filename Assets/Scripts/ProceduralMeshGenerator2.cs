@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ProceduralMeshGenerator : MonoBehaviour
+public class ProceduralMeshGenerator1 : MonoBehaviour
 {
     [Header("Sphere Parameters")]
     [SerializeField] float sphereRadius = 1.0f;

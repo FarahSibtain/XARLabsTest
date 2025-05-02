@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter)), RequireComponent(typeof(MeshRenderer))]
-public class ProceduralMeshGenerator1 : MonoBehaviour
+public class ProceduralMeshGenerator : MonoBehaviour
 {
     //private void Start()
     //{
@@ -21,6 +21,7 @@ public class ProceduralMeshGenerator1 : MonoBehaviour
 
         // Assign materials
         meshRenderer.material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+        transform.localScale = new Vector3(0.2f, 0.2f, 0.2f); 
     }
 
     Mesh GenerateSphereWithCone()

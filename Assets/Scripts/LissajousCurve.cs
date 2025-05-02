@@ -9,24 +9,27 @@ public class LissajousCurve : MonoBehaviour
     [Range(0, 20)] public float aa = 5f;
     [Range(0, 20)] public float bb = 4f;
     [Range(0, 20)] public float delta = 2.3f;
+    [Range(0, 2)] public float speed = 1; // Speed of the animation
 
     float t = 0;
+    Vector3 initialPos;
 
     void Start()
     {
         // Checks if there is a Trail Renderer component attached to this gameobject.
         // If not, it will attach one, and set values for the relevant fields. But generally
-        CheckTrailRenderer();        
+        CheckTrailRenderer();
+        initialPos = transform.position;
     }
 
     void Update()
     {
-        t += Time.deltaTime;
+        t += Time.deltaTime * speed;
 
         // Calculate positions for Object A using Lissajous formula (XY plane only)
         float x = A * Mathf.Sin(aa * t + delta);
         float y = B * Mathf.Sin(bb * t);
-        transform.position = new Vector3(x, y, 0);
+        transform.position = new Vector3(initialPos.x + x, initialPos.y + y, initialPos.z);
     }
     void CheckTrailRenderer()
     {
