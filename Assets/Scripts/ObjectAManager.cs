@@ -73,7 +73,7 @@ public class ObjectAManager : MonoBehaviour
 
     private void OnReleased(SelectExitEventArgs args)
     {
-        lissajousCurve.ResetObjectInitialPosition();
+        lissajousCurve.enabled = true;
     }
 
     public void ToggleTrailVisibility()

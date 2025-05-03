@@ -9,10 +9,10 @@ public class ObjectBManager : MonoBehaviour
 {
     TrailRenderer trailRenderer;
 
-    private void Start()
-    {
-        trailRenderer = GetComponent<TrailRenderer>();
-    }
+    //private void Start()
+    //{
+    //    trailRenderer = GetComponent<TrailRenderer>();
+    //}
 
     public void ToggleTrailVisibility()
     {

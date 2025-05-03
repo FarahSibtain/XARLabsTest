@@ -6,10 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter)), RequireComponent(typeof(MeshRenderer))]
 public class ProceduralMeshGenerator : MonoBehaviour
 {
-    //private void Start()
-    //{
-    //    GenerateMesh();
-    //}
+    [SerializeField] private Material ObjectAMat;
 
     public void GenerateMesh()
     {
@@ -20,8 +17,8 @@ public class ProceduralMeshGenerator : MonoBehaviour
         meshFilter.mesh = GenerateSphereWithCone();
 
         // Assign materials
-        meshRenderer.material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-        transform.localScale = new Vector3(0.2f, 0.2f, 0.2f); 
+        meshRenderer.material = ObjectAMat;
+        transform.localScale = new Vector3(0.05f, 0.05f, 0.05f); 
     }
 
     Mesh GenerateSphereWithCone()
@@ -34,7 +31,7 @@ public class ProceduralMeshGenerator : MonoBehaviour
 
         // Create sphere and cone meshes
         Mesh sphereMesh = GenerateSphereMesh(1f, 24, 12); // Increased segments and rings for better quality
-        Mesh coneMesh = GenerateConeMesh(0.5f, 0.5f, 12);
+        Mesh coneMesh = GenerateConeMesh(0.6f, 0.9f, 12);
 
         // Combine sphere and cone vertices
         Vector3[] combinedVertices = new Vector3[sphereMesh.vertexCount + coneMesh.vertexCount];
@@ -55,7 +52,7 @@ public class ProceduralMeshGenerator : MonoBehaviour
             Vector3 rotated = new Vector3(v.x, -v.z, v.y); // Rotate -90° around X
 
             // Embed slightly into the sphere
-            Vector3 displaced = rotated + new Vector3(0, 0, 0.85f);
+            Vector3 displaced = rotated + new Vector3(0, 0, 0.95f);
             combinedVertices[sphereMesh.vertexCount + i] = displaced;
 
             // Calculate averaged normal for smooth lighting at base
@@ -189,8 +186,8 @@ public class ProceduralMeshGenerator : MonoBehaviour
         for (int i = 0; i < segments; i++)
         {
             triangles[triIndex++] = i + 1;
-            triangles[triIndex++] = segments + 1;
             triangles[triIndex++] = (i + 1) % segments + 1;
+            triangles[triIndex++] = segments + 1;
         }
 
         mesh.vertices = vertices;
