@@ -54,8 +54,8 @@ public class ObjectAManager : MonoBehaviour
         XRGrabInteractable grabbable = transform.AddComponent<XRGrabInteractable>();
 
         // Setting interaction layer
-        grabbable.interactionLayers = InteractionLayerMask.GetMask("ObjectA"); 
-
+        grabbable.interactionLayers = InteractionLayerMask.GetMask("ObjectA");
+        grabbable.throwOnDetach = false; 
         // Hook into grab events
         grabbable.selectEntered.AddListener(OnGrabbed);
         grabbable.selectExited.AddListener(OnReleased);
