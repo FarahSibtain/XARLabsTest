@@ -33,9 +33,10 @@ Setup Details:
 - Open the project in Unity 2023.3 or later.
 - Hit Play in Unity Editor to test the app.
 
-- For AI features:
+For AI features:
 - You need an OpenAI API key to test the AI features. You can get it from https://platform.openai.com/signup
 - Provide the API key in the OpenAIConfiguration file in foler .\Assets\Resources
+
 For VR testing:
 - connect your Meta Quest headset using Oculus Link or Air Link.
 - Build and deploy the project using Build and Run.
