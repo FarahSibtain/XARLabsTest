@@ -39,4 +39,6 @@ Use the .apk file to test the app on your Meta Quest device from here: https://d
 
 Demo Video:
 - Demo with Controllers and AI Features: https://drive.google.com/file/d/1fVhTvFox_U8cRFv_2nmseDpZcDevcRDO/view?usp=sharing
+(Note: My voice is not audible in the demo video where I'm instructing it to hide the object and change the angular speed of Object A)
+
 - Demo with Hand Tracking: https://drive.google.com/file/d/19TVBBhIp6pvmDvIdXxJOM6T_2EqvYWHn/view?usp=sharing
