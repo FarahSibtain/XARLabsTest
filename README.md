@@ -26,12 +26,15 @@ Bonus Part:
 
 Additional Features:
 - Added a AI feature that allows the user to ask questions as a Neurosurgeon to the AI Virtual Assistant
-- User can ask AI to change visibility and angular speed of Object A
+- User can ask AI to change visibility and angular speed of Object A. Mention something like "hide the object" or "change the angular speed to 100"
 
 Setup Details:
 - Clone the repository from GitHub: https://github.com/FarahSibtain/XARLabsTest.git
 - Open the project in Unity 2023.3 or later.
 - Hit Play in Unity Editor to test the app.
+For AI features:
+- You need an OpenAI API key to test the AI features. You can get it from https://platform.openai.com/signup
+- Provide the API key in the OpenAIConfiguration file in foler .\Assets\Resources
 For VR testing:
 - connect your Meta Quest headset using Oculus Link or Air Link.
 - Build and deploy the project using Build and Run.
