@@ -10,12 +10,10 @@ public class ObjectAManager : MonoBehaviour
     [SerializeField] Transform target; // Target to rotate towards
 
     private LissajousCurve lissajousCurve;
-    TrailRenderer trailRenderer;
 
     private void Start()
     {
         StartCoroutine(InitObject());
-        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     IEnumerator InitObject()
@@ -47,7 +45,6 @@ public class ObjectAManager : MonoBehaviour
 
     IEnumerator MakeGrabbable()
     {
-        //Now make this object a grabbable object
         Collider col = transform.AddComponent<SphereCollider>();
         Rigidbody rb = transform.AddComponent<Rigidbody>();
         rb.isKinematic = true; // Set to true to prevent physics interactions
@@ -56,8 +53,8 @@ public class ObjectAManager : MonoBehaviour
         yield return null;
         XRGrabInteractable grabbable = transform.AddComponent<XRGrabInteractable>();
 
-        // Setting interaction layers for 3 layers
-        grabbable.interactionLayers = InteractionLayerMask.GetMask("ObjectA"); // Set the interaction layer
+        // Setting interaction layer
+        grabbable.interactionLayers = InteractionLayerMask.GetMask("ObjectA"); 
 
         // Hook into grab events
         grabbable.selectEntered.AddListener(OnGrabbed);
@@ -68,7 +65,7 @@ public class ObjectAManager : MonoBehaviour
 
     private void OnGrabbed(SelectEnterEventArgs args)
     {
-        lissajousCurve.enabled = false; // Disable the LissajousCurve script to stop movement
+        lissajousCurve.enabled = false; 
     }
 
     private void OnReleased(SelectExitEventArgs args)
@@ -78,6 +75,7 @@ public class ObjectAManager : MonoBehaviour
 
     public void ToggleTrailVisibility()
     {
+        TrailRenderer trailRenderer = GetComponent<TrailRenderer>();
         if (trailRenderer == null)
         {
             Debug.LogWarning("TrailRenderer component not found.");

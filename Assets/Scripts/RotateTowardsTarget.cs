@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RotateTowardsTarget : MonoBehaviour
 {
-    [SerializeField] private float angularSpeed = 90f; // Degrees per second
+    public float angularSpeed = 90f; // Degrees per second
     private Transform target;    
 
     void Update()

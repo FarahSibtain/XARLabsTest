@@ -23,14 +23,13 @@ public class ProceduralMeshGenerator : MonoBehaviour
 
     Mesh GenerateSphereWithCone()
     {
-        // Create a new mesh
         Mesh mesh = new Mesh
         {
             name = "SphereWithCone"
         };
 
         // Create sphere and cone meshes
-        Mesh sphereMesh = GenerateSphereMesh(1f, 24, 12); // Increased segments and rings for better quality
+        Mesh sphereMesh = GenerateSphereMesh(1f, 24, 12); 
         Mesh coneMesh = GenerateConeMesh(0.6f, 0.9f, 12);
 
         // Combine sphere and cone vertices
@@ -42,7 +41,7 @@ public class ProceduralMeshGenerator : MonoBehaviour
         // Copy sphere vertices, UVs, and triangles
         sphereMesh.vertices.CopyTo(combinedVertices, 0);
         sphereMesh.uv.CopyTo(combinedUVs, 0);
-        sphereMesh.normals.CopyTo(combinedNormals, 0); // Copy sphere normals
+        sphereMesh.normals.CopyTo(combinedNormals, 0); 
         sphereMesh.triangles.CopyTo(combinedTriangles, 0);
 
         // Copy cone vertices, adjust their position, and UVs
@@ -51,12 +50,12 @@ public class ProceduralMeshGenerator : MonoBehaviour
             Vector3 v = coneMesh.vertices[i];
             Vector3 rotated = new Vector3(v.x, -v.z, v.y); // Rotate -90° around X
 
-            // Embed slightly into the sphere
+            // Embed cone slightly into the sphere
             Vector3 displaced = rotated + new Vector3(0, 0, 0.95f);
             combinedVertices[sphereMesh.vertexCount + i] = displaced;
 
             // Calculate averaged normal for smooth lighting at base
-            Vector3 sphereNormal = displaced.normalized; // Assume sphere center at origin
+            Vector3 sphereNormal = v.normalized; // Assume sphere center at origin
             Vector3 coneNormal = (coneMesh.normals[i].y * Vector3.forward + coneMesh.normals[i].x * Vector3.right - coneMesh.normals[i].z * Vector3.up).normalized;
             Vector3 smoothNormal = (sphereNormal + coneNormal).normalized;
             combinedNormals[sphereMesh.vertexCount + i] = smoothNormal; // Store calculated normals
@@ -76,9 +75,9 @@ public class ProceduralMeshGenerator : MonoBehaviour
         mesh.uv = combinedUVs;
         mesh.normals = combinedNormals; // Assign pre-calculated normals instead of recalculating
 
-        // Only recalculate bounds, not normals since we're supplying them
+        // recalculate bounds
         mesh.RecalculateBounds();
-        Debug.Log($"ProceduralMeshCreator: Generated mesh with {mesh.vertexCount} vertices.");
+        Debug.Log($"ProceduralMeshGenerator: Generated mesh with {mesh.vertexCount} vertices.");
 
         return mesh;
     }
