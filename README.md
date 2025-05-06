@@ -31,10 +31,12 @@ Additional Features:
 Setup Details:
 - Clone the repository from GitHub: https://github.com/FarahSibtain/XARLabsTest.git
 - Open the project in Unity 2023.3 or later.
+- Open the scene: XARLabs
 - Hit Play in Unity Editor to test the app.
 
 For AI features:
 - You need an OpenAI API key to test the AI features. You can get it from https://platform.openai.com/signup
+- In the XARLabs scene, enable the RealtimeBehaviour GameObject in the Hierarchy.
 - Provide the API key in the OpenAIConfiguration file in foler .\Assets\Resources
 
 For VR testing:
