@@ -128,11 +128,11 @@ public class ProceduralMeshGenerator : MonoBehaviour
 
                 // Standard quad triangulation
                 triangles[triIndex++] = current;
-                triangles[triIndex++] = next;
                 triangles[triIndex++] = current + 1;
+                triangles[triIndex++] = next;
 
-                triangles[triIndex++] = current + 1;
                 triangles[triIndex++] = next;
+                triangles[triIndex++] = current + 1;
                 triangles[triIndex++] = next + 1;
             }
         }
